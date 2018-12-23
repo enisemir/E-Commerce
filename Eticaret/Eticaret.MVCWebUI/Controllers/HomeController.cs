@@ -1,4 +1,5 @@
 ﻿using Eticaret.MVCWebUI.Entity;
+using Eticaret.MVCWebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,19 @@ namespace Eticaret.MVCWebUI.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(_context.Products.Where(i=>i.IsHome && i.IsApproved ).ToList());
+            var urunler = _context.Products
+                                .Where(i => i.IsHome && i.IsApproved)
+                                .Select(i => new ProductModel()
+                                {
+                                    Id=i.Id,
+                                    Name=i.Name.Length > 50 ? i.Name.Substring(0, 47) + "..." : i.Name,
+                                    Description =i.Description.Length>50?i.Description.Substring(0,47)+"...":i.Description,
+                                    Price=i.Price,
+                                    Stock=i.Stock,
+                                    Image=i.Image,
+                                    CategoryId=i.CategoryId
+                                }).ToList();
+            return View(urunler);
         }
         public ActionResult Details(int id)
         {
@@ -21,7 +34,19 @@ namespace Eticaret.MVCWebUI.Controllers
         }
         public ActionResult List()
         {
-            return View(_context.Products.Where(i =>i.IsApproved).ToList());
+            var urunler = _context.Products
+                                .Where(i => i.IsApproved)
+                                .Select(i => new ProductModel()
+                                {
+                                    Id = i.Id,
+                                    Name = i.Name.Length > 50 ? i.Name.Substring(0, 47) + "..." : i.Name,
+                                    Description = i.Description.Length > 50 ? i.Description.Substring(0, 47) + "..." : i.Description,
+                                    Price = i.Price,
+                                    Stock = i.Stock,
+                                    Image = i.Image ??"1.jpg",
+                                    CategoryId = i.CategoryId
+                                }).ToList();
+            return View(urunler);
         }
     }
 }
