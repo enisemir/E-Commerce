@@ -10,7 +10,7 @@ using Eticaret.MVCWebUI.Entity;
 
 namespace Eticaret.MVCWebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="admin")]
     public class CategoryController : Controller
     {
         private DataContext db = new DataContext();

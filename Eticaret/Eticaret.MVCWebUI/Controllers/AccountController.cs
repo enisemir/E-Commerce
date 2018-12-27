@@ -70,7 +70,7 @@ namespace Eticaret.MVCWebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Login model)
+        public ActionResult Login(Login model, string ReturnUrl)
         {
             //Login İşlemleri
             var user = UserManager.Find(model.UserName, model.Password);
@@ -85,6 +85,10 @@ namespace Eticaret.MVCWebUI.Controllers
                 authProperties.IsPersistent = model.RememberMe;
 
                 authManager.SignIn(authProperties, identityclaims);
+                if (String.IsNullOrEmpty(ReturnUrl))
+                {
+                    Redirect(ReturnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             }
             else
