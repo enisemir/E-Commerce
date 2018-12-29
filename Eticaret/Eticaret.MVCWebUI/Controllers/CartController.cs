@@ -14,14 +14,14 @@ namespace Eticaret.MVCWebUI.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-            return View();
+            return View(GetCart());
         }
         public ActionResult AddToCart(int id)
         {
             var product = db.Products.FirstOrDefault(i => i.Id == id);
             if (product != null)
             {
-                GetCart().DeleteProduct(product);
+                GetCart().AddProduct(product,1);
             }
             return RedirectToAction("Index");
         }
@@ -31,7 +31,7 @@ namespace Eticaret.MVCWebUI.Controllers
             var product = db.Products.FirstOrDefault(i => i.Id == id);
             if (product != null)
             {
-                GetCart().AddProduct(product, 1);
+                GetCart().DeleteProduct(product);
             }
             return RedirectToAction("Index");
         }
@@ -44,6 +44,10 @@ namespace Eticaret.MVCWebUI.Controllers
                 Session["Cart"] = cart;
             }
             return cart;
+        }
+        public PartialViewResult Summary()
+        {
+            return PartialViewResult(GetCart());
         }
     }
 }
