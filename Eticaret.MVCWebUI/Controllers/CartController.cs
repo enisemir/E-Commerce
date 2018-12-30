@@ -87,6 +87,7 @@ namespace Eticaret.MVCWebUI.Controllers
             order.OrderNumber = "A" + (new Random()).Next(11111,99999).ToString();
             order.Total = cart.Total();
             order.OrderDate = DateTime.Now;
+            order.OrderState = EnumOrderState.Waiting;
 
             order.Username = entity.Username;
             order.AdresBasligi = entity.AdresBasligi;

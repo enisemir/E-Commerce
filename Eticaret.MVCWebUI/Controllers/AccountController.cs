@@ -13,7 +13,7 @@ namespace Eticaret.MVCWebUI.Controllers
 {
     public class AccountController : Controller
     {
-
+        private DataContext db = new DataContext();
         private UserManager<ApplicationUser> UserManager;
         private RoleManager<ApplicationRole> RoleManager;
 
@@ -24,6 +24,12 @@ namespace Eticaret.MVCWebUI.Controllers
 
             var roleStore = new RoleStore<ApplicationRole>(new IdentityDataContext());
             RoleManager = new RoleManager<ApplicationRole>(roleStore);
+        }
+
+        public ActionResult Index()
+        {
+            var orders = 
+            return View(orders);
         }
         // GET: Account
         public ActionResult Register()
