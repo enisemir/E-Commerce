@@ -24,13 +24,16 @@
                         <tr>
                             <td>@item.OrderNumber</td>
                             <td>@item.OrderDate.ToShortDateString()</td>
-                            <td>@item.Total</td>
+                            <td>
+                                <i class="fa fa-try" aria-hidden="true"></i>
+                                @item.Total
+                            </td>
                             <td>@item.OrderState</td>
                             <td>
-                                @Html.ActionLink("Details","Details",new { id=item.Id},new { @class="btn btn-primary"})
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
                             </td>
                         </tr>
-                    }                    
+                    }
                 </tbody>
             </table>
         </div>

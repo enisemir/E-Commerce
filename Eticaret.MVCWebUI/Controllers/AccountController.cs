@@ -27,7 +27,7 @@ namespace Eticaret.MVCWebUI.Controllers
             var roleStore = new RoleStore<ApplicationRole>(new IdentityDataContext());
             RoleManager = new RoleManager<ApplicationRole>(roleStore);
         }
-
+        [Authorize]
         public ActionResult Index()
         {
             var username = User.Identity.Name;
@@ -43,7 +43,7 @@ namespace Eticaret.MVCWebUI.Controllers
                 }).OrderByDescending(i=>i.OrderDate).ToList();
             return View(orders);
         }
-
+        [Authorize]
         public ActionResult Details(int id)
         {
             var entity = db.Orders
@@ -65,7 +65,7 @@ namespace Eticaret.MVCWebUI.Controllers
                     .Select(a => new OrderLineModel()
                     {
                         ProductId=a.ProductId,
-                        ProductName=a.Product.Name,
+                        ProductName=a.Product.Name.Length>50?a.Product.Name.Substring(0,47)+"...":a.Product.Name,
                         Quantity=a.Quantity,
                         Image=a.Product.Image,
                         Price=a.Price

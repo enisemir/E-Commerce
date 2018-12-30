@@ -14,7 +14,6 @@ namespace Eticaret.MVCWebUI.Models
         public DateTime OrderDate { get; set; }
         public EnumOrderState OrderState { get; set; }
 
-        public string Username { get; set; }
         public string AdresBasligi { get; set; }
         public string Adres { get; set; }
         public string Sehir { get; set; }

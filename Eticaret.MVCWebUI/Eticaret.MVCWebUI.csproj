@@ -173,6 +173,7 @@
     <Compile Include="Identity\IdentityInitializer.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OrderDetailsModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
@@ -209,6 +210,7 @@
     <Content Include="Views\Cart\Checkout.cshtml" />
     <Content Include="Views\Cart\Completed.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
