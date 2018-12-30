@@ -88,8 +88,8 @@ namespace Eticaret.MVCWebUI.Controllers
             order.Total = cart.Total();
             order.OrderDate = DateTime.Now;
             order.OrderState = EnumOrderState.Waiting;
+            order.Username = User.Identity.Name;
 
-            order.Username = entity.Username;
             order.AdresBasligi = entity.AdresBasligi;
             order.Adres = entity.Adres;
             order.Sehir = entity.Sehir;

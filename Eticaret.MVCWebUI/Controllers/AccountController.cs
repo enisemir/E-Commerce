@@ -1,4 +1,5 @@
-﻿using Eticaret.MVCWebUI.Identity;
+﻿using Eticaret.MVCWebUI.Entity;
+using Eticaret.MVCWebUI.Identity;
 using Eticaret.MVCWebUI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -28,7 +29,17 @@ namespace Eticaret.MVCWebUI.Controllers
 
         public ActionResult Index()
         {
-            var orders = 
+            var username = User.Identity.Name;
+            var orders = db.Orders
+                .Where(i => i.Username == username)
+                .Select(i => new UserOrderModel()
+                {
+                    Id = i.Id,
+                    OrderNumber = i.OrderNumber,
+                    Total = i.Total,
+                    OrderDate = i.OrderDate,
+                    OrderState=i.OrderState                                        
+                }).OrderByDescending(i=>i.OrderDate).ToList();
             return View(orders);
         }
         // GET: Account
@@ -91,7 +102,7 @@ namespace Eticaret.MVCWebUI.Controllers
                 authProperties.IsPersistent = model.RememberMe;
 
                 authManager.SignIn(authProperties, identityclaims);
-                if (String.IsNullOrEmpty(ReturnUrl))
+                if (!String.IsNullOrEmpty(ReturnUrl))
                 {
                     Redirect(ReturnUrl);
                 }
