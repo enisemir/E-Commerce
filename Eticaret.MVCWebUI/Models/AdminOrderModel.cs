@@ -13,5 +13,6 @@ namespace Eticaret.MVCWebUI.Models
         public double Total { get; set; }
         public EnumOrderState OrderState { get; set; }
         public DateTime OrderDate { get; set; }
+        public int Count { get; set; }
     }
 }

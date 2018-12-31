@@ -18,7 +18,7 @@ namespace Eticaret.MVCWebUI.Identity
             {
                 var store = new RoleStore<ApplicationRole>(context);
                 var manager = new RoleManager<ApplicationRole>(store);
-                var role = new ApplicationRole() { Name = "user", Description = "user rolü" };
+                var role = new ApplicationRole() { Name = "admin", Description = "admin rolü" };
                 manager.Create(role);
 
             }
@@ -26,7 +26,7 @@ namespace Eticaret.MVCWebUI.Identity
             {
                 var store = new RoleStore<ApplicationRole>(context);
                 var manager = new RoleManager<ApplicationRole>(store);
-                var role = new ApplicationRole() {Name="admin",Description="admin rolü" };
+                var role = new ApplicationRole() {Name="user",Description="user rolü" };
                 manager.Create(role);
 
             }

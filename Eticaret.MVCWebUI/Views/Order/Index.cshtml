@@ -8,7 +8,7 @@
 <div class="container pb-5">
     <h2>Siparişler</h2>
     <hr />
-    <table>
+    <table class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -16,6 +16,7 @@
                 <th>Order Date</th>
                 <th>Order Status</th>
                 <th>Total</th>
+                <th>Product Count</th>
                 <th></th>
             </tr>
         </thead>
@@ -26,7 +27,7 @@
                     <td>@item.Id</td>
                     <td>@item.OrderNumber</td>
                     <td>@item.OrderDate</td>
-                    <td>@item.OrderState</td>
+                    <td>@item.Count</td>
                     <td>@item.Total</td>
                     <td>
                         @Html.ActionLink("Details","Details",new { id=item.Id},new { @class="btn btn-primary btn-sm"})
